@@ -23,7 +23,7 @@ def add_book(request):
         authors = request.POST.getlist("authors")
         # 数据库新增数据
         book_obj = models.Book.objects.create(title=title,price=price,publish_time=publish_date,publish_id=publish_id)
-        # 你可以尝试用**request.POST来新增数据
+        # 可以尝试用**request.POST来新增数据
 
         # 去书籍与作者的第三表手动创建关系
         book_obj.authors.add(*authors)
@@ -37,7 +37,7 @@ def add_book(request):
 
 
 def delete_book(request,delete_id):
-    # 获取用户想要删除的数据的id???
+    # 获取用户想要删除的数据的id
     # print(delete_id)
     models.Book.objects.filter(pk=delete_id).delete()
     return redirect(reverse('book_list'))
@@ -87,7 +87,7 @@ def add_publish(request):
     return render(request,'add_publish.html',locals())
 
 def delete_publish(request,delete_id):
-    # 获取用户想要删除的数据的id???
+    # 获取想要删除的数据的id
     # print(delete_id)
     models.Publish.objects.filter(pk=delete_id).delete()
     return redirect(reverse('publish_list'))
@@ -141,7 +141,7 @@ def add_author(request):
     return render(request,'add_author.html',locals())
 
 def delete_author(request,authordetail_id):
-    # 获取用户想要删除的数据的id???
+    # 获取用户想要删除的数据的id
     # print(delete_id)
     models.AuthorDetail.objects.filter(pk=authordetail_id).delete()
     return redirect(reverse('author_list'))
